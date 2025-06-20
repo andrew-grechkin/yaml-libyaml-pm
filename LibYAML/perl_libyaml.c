@@ -798,6 +798,12 @@ Dump(SV *dummy, ...)
     SV* indent = get_sv("YAML::XS::Indent", GV_ADD);
     if (SvIOK(indent)) yaml_emitter_set_indent(&dumper.emitter, SvIV(indent));
 
+    /* set force indent */
+    SV* force_sequence_indent = get_sv("YAML::XS::ForceSequenceIndent", GV_ADD);
+    if (SvIOK(force_sequence_indent)) {
+		yaml_emitter_set_force_sequence_indent(&dumper.emitter, SvIV(force_sequence_indent));
+	}
+
     yaml_emitter_set_unicode(&dumper.emitter, 1);
     yaml_emitter_set_width(&dumper.emitter, 2);
     yaml_emitter_set_output(
@@ -2194,4 +2200,3 @@ oo_get_yaml_anchor(perl_yaml_xs_t *self, SV *node)
     }
     return NULL;
 }
-

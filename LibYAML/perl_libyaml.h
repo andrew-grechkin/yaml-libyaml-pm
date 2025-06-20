@@ -67,6 +67,7 @@ typedef struct {
     long anchor;
     HV *anchors;
     int indent;
+    int force_sequence_indent;
     int utf8;
     int header;
     int footer;

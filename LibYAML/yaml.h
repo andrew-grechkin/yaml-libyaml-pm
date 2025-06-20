@@ -1619,6 +1619,8 @@ typedef struct yaml_emitter_s {
     int canonical;
     /** The number of indentation spaces. */
     int best_indent;
+    /** Force sequence indent in block mode */
+    int force_sequence_indent;
     /** The preferred width of the output lines. */
     int best_width;
     /** Allow unescaped non-ASCII characters? */
@@ -1868,6 +1870,16 @@ YAML_DECLARE(void)
 yaml_emitter_set_indent(yaml_emitter_t *emitter, int indent);
 
 /**
+ * Set force indentation for sequence in block mode.
+ *
+ * @param[in,out]   emitter     An emitter object.
+ * @param[in]       force       Flag to force indent.
+ */
+
+YAML_DECLARE(void)
+yaml_emitter_set_force_sequence_indent(yaml_emitter_t *emitter, int force);
+
+/**
  * Set the preferred line width. @c -1 means unlimited.
  *
  * @param[in,out]   emitter     An emitter object.
@@ -1975,4 +1987,3 @@ yaml_emitter_flush(yaml_emitter_t *emitter);
 #endif
 
 #endif /* #ifndef YAML_H */
-

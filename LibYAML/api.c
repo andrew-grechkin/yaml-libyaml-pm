@@ -541,6 +541,18 @@ yaml_emitter_set_indent(yaml_emitter_t *emitter, int indent)
 }
 
 /*
+ * Set force indentation for sequence in block mode.
+ */
+
+YAML_DECLARE(void)
+yaml_emitter_set_force_sequence_indent(yaml_emitter_t *emitter, int force)
+{
+    assert(emitter);    /* Non-NULL emitter object expected. */
+
+    emitter->force_sequence_indent = force;
+}
+
+/*
  * Set the preferred line width.
  */
 
@@ -1389,5 +1401,3 @@ yaml_document_append_mapping_pair(yaml_document_t *document,
 
     return 1;
 }
-
-

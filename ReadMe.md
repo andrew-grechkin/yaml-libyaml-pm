@@ -154,6 +154,12 @@ Only `Load` and `Dump` are exported by default.
 
   Sets the number of spaces for indentation for `Dump`.
 
+* `$YAML::XS::ForceSequenceIndent`
+
+  Default is 0.
+
+  Forces indentation for sequences during `Dump`.
+
 
 # Using YAML::XS with Unicode
 

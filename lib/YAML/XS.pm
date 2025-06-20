@@ -15,6 +15,7 @@ our (
     $DumpCode,
     $ForbidDuplicateKeys,
     $Indent,
+    $ForceSequenceIndent,
     $LoadBlessed,
     $LoadCode,
     $UseCode,

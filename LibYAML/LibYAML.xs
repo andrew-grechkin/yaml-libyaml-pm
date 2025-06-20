@@ -4,7 +4,7 @@
 void xxx_local_patches_xs() { printf("%s", local_patches[0]); }
 #endif
 
-MODULE = YAML::XS::LibYAML		PACKAGE = YAML::XS::LibYAML		
+MODULE = YAML::XS::LibYAML		PACKAGE = YAML::XS::LibYAML
 
 PROTOTYPES: DISABLE
 
@@ -58,6 +58,7 @@ new(char *class_name, ...)
         {
             yaml = (perl_yaml_xs_t*) malloc(sizeof(perl_yaml_xs_t));
             yaml->indent = 2;
+            yaml->force_sequence_indent = 0;
             yaml->header = 1;
             yaml->footer = 0;
             yaml->width = 80;
@@ -77,6 +78,12 @@ new(char *class_name, ...)
                             SV *indent_sv = newSViv(intvalue);
                             hv_store(hash, "indent", 6, indent_sv, 0);
                             yaml->indent = intvalue;
+                        }
+                        else if (strEQ(key, "force_sequence_indent")) {
+                            intvalue = SvIV(ST(i+1));
+                            SV *force_sequence_indent_sv = newSViv(intvalue);
+                            hv_store(hash, "force_sequence_indent", 6, force_sequence_indent_sv, 0);
+                            yaml->force_sequence_indent = intvalue;
                         }
                         else if (strEQ(key, "utf8")) {
                             intvalue = SvIV(ST(i+1));
@@ -202,6 +209,7 @@ dump(SV *object, ...)
         yaml_emitter_initialize(&yaml->emitter);
         yaml_emitter_set_unicode(&yaml->emitter, 1);
         yaml_emitter_set_indent(&yaml->emitter, yaml->indent);
+        yaml_emitter_set_force_sequence_indent(&yaml->emitter, yaml->force_sequence_indent);
         yaml_emitter_set_width(&yaml->emitter, yaml->width);
         yaml_emitter_set_output(&yaml->emitter, &append_output, (void *) string);
         ye = yaml->emitter;
@@ -246,4 +254,3 @@ DESTROY(SV *object)
         }
         XSRETURN(0);
     }
-
