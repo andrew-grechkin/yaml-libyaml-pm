@@ -58,7 +58,7 @@ my $x = {foo => \undef};
 +++ yaml
 ---
 foo: !!perl/ref
-  =: ~
+  =: null
 
 === Circular ref to scalar
 +++ perl

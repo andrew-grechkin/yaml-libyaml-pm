@@ -15,14 +15,14 @@ undef $array->[2];
 
 my $yaml = Dump($array);
 
-is $yaml, <<'...', "Nulls dump as ~";
+is $yaml, <<'...', "Nulls dump as null";
 ---
-- ~
+- null
 - undef
-- ~
+- null
 - '~'
-- ~
-- ~
+- null
+- null
 - ~/file.txt
 ...
 

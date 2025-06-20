@@ -1166,8 +1166,8 @@ dump_scalar(perl_yaml_dumper_t *dumper, SV *node, yaml_char_t *tag)
 
     SvGETMAGIC(node);
     if (!SvOK(node)) {
-        string = "~";
-        string_len = 1;
+        string = "null";
+        string_len = 4;
         style = YAML_PLAIN_SCALAR_STYLE;
     }
     else if (node == &PL_sv_yes
