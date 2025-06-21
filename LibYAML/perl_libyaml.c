@@ -2082,6 +2082,8 @@ oo_dump_scalar(perl_yaml_xs_t *self, SV *node)
         if (_match_core_schema(string)) {
             style = YAML_SINGLE_QUOTED_SCALAR_STYLE;
         }
+        if(strchr(string, '\n'))
+           style = (string_len > 30) ? YAML_LITERAL_SCALAR_STYLE : YAML_DOUBLE_QUOTED_SCALAR_STYLE;
     }
 
     if (! yaml_scalar_event_initialize(
